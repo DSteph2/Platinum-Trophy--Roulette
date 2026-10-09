@@ -1,0 +1,187 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Platinum Roulette | PS Plus</title><style>
+:root{font-family:Inter,system-ui,-apple-system,sans-serif;color:#eaf0ff;background:#080e20}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#1c3670 0%,#080e20 55%);min-height:100vh}.wrap{max-width:1150px;margin:auto;padding:30px 18px 70px}h1{font-size:clamp(30px,5vw,55px);letter-spacing:-2px;margin:5px 0}h2{font-size:19px}p,.muted{color:#a9b8d6;line-height:1.5}.eyebrow{color:#68d9ff;font-size:12px;font-weight:800;letter-spacing:3px}.panel{background:#111c35e8;border:1px solid #33466a;border-radius:20px;padding:22px;margin-top:18px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{background:#182747;border-radius:14px;padding:15px}.stat strong{display:block;font-size:27px}.stat small{color:#b4c4e3}button,.button{cursor:pointer;border:0;border-radius:11px;padding:12px 16px;background:#346dff;color:white;font-weight:800;font-size:14px}button.secondary{background:#263a61}button.ghost{background:transparent;border:1px solid #40557b}button:disabled{opacity:.4;cursor:not-allowed}input,select{width:100%;padding:12px;background:#09142a;color:white;border:1px solid #3a5076;border-radius:10px;font:inherit}label{font-size:12px;color:#bfd0ef;display:block;margin-bottom:6px}.filters{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.hero{background:linear-gradient(120deg,#163c88,#172044);border:1px solid #5584e0;padding:24px;border-radius:17px;min-height:160px}.hero .game{font-size:clamp(24px,4vw,39px);font-weight:900;margin:10px 0}.pill{display:inline-block;padding:4px 9px;border-radius:20px;background:#29446f;color:#d3e9ff;font-size:11px;margin:3px 5px 3px 0}.notice{border-left:3px solid #f8c46c;padding:12px 14px;background:#3a2d2540;color:#f6d6a0;font-size:13px}.list{max-height:540px;overflow:auto}.item{display:flex;gap:10px;justify-content:space-between;align-items:center;border-bottom:1px solid #2c3d5c;padding:12px 2px}.item b{display:block}.item small{color:#a9b8d6}.item .buttons{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.item button{padding:8px 9px;font-size:12px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.check{display:flex;align-items:center;gap:8px;margin-top:12px;color:#d7e5fc;font-size:13px}.check input{width:auto}.footer{font-size:12px;color:#92a6c8;margin-top:25px}a{color:#86bdff}@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}.filters,.two{grid-template-columns:1fr}.item{align-items:flex-start;flex-direction:column}.item .buttons{justify-content:flex-start}}
+</style></head><body><main class="wrap"><div class="eyebrow">PS PLUS EXTRA + PREMIUM • US • PS5</div><h1>🏆 Platinum Roulette</h1><p>Find your next trophy hunt. Offline-friendly, with permanent local tracking and a catalog you can update.</p><div class="stats"><div class="stat"><strong id="total">0</strong><small>Catalog titles</small></div><div class="stat"><strong id="eligible">0</strong><small>Verified eligible</small></div><div class="stat"><strong id="done">0</strong><small>Platinums completed</small></div><div class="stat"><strong id="pool">0</strong><small>Current draw pool</small></div></div>
+<section class="panel"><h2>🎰 Your next platinum</h2><div class="hero"><div class="eyebrow" id="drawlabel">READY TO DRAW</div><div class="game" id="chosen">Press Randomize</div><div id="chosenmeta" class="muted">Verified offline-only games are drawn by default. If the pool is empty, use Draw unverified (preview) to test the roulette; those games are NOT confirmed platinum-eligible.</div></div><div class="actions"><button id="draw">🎲 Randomize</button><button id="reroll" class="secondary">↻ Reroll</button><button id="explore" class="secondary">🎮 Draw unverified (preview)</button><button id="complete" class="secondary" disabled>🏆 Mark completed</button><button id="progress" class="secondary" disabled>▶ In progress</button><button id="skip" class="ghost" disabled>Skip game</button></div></section>
+<section class="panel"><h2>Filters</h2><div class="filters"><div><label for="search">Search title</label><input id="search" placeholder="Game name..."></div><div><label for="tier">Catalog tier</label><select id="tier"><option value="all">Extra + Premium</option><option value="Extra">Extra</option><option value="Premium">Premium only</option></select></div><div><label for="difficulty">Maximum difficulty</label><select id="difficulty"><option value="0">Any / unknown</option><option value="3">3/10</option><option value="5">5/10</option><option value="7">7/10</option><option value="10">10/10</option></select></div><div><label for="hours">Maximum hours</label><select id="hours"><option value="0">Any / unknown</option><option value="10">10 hours</option><option value="25">25 hours</option><option value="50">50 hours</option><option value="100">100 hours</option></select></div></div><label class="check"><input type="checkbox" id="online" checked> Exclude games with required online trophies or unverified online requirements</label><label class="check"><input type="checkbox" id="verified" checked> Draw only games confirmed to have an obtainable platinum</label><label class="check"><input type="checkbox" id="excludeDone" checked> Exclude completed, skipped and in-progress games</label><label class="check"><input type="checkbox" id="ps5" checked> Only PS5-playable games (exclude PS3 cloud-only games)</label></section>
+<div class="two"><section class="panel"><h2>Game library <span id="count" class="muted"></span></h2><div id="list" class="list"></div></section><section class="panel"><h2>Update and backup</h2><div class="notice"><b>Catalog accuracy:</b> The bundled list is a sourced starter set, not a verified complete October 2026 US catalog. Most trophy details are unverified and intentionally excluded from safe draws. Import a researched CSV and verify trophy fields to expand the pool. The app never silently treats unknowns as safe.</div><p>Import CSV columns: <code>title,tier,platform,difficulty,hours,online,platinum,obtainable</code>. Values for online: <code>no</code>, <code>yes</code>, <code>unknown</code>; platinum and obtainable: <code>yes</code>, <code>no</code>, <code>unknown</code>. Platform: <code>PS4</code>, <code>PS5</code>, <code>PS4/PS5</code>, or <code>PS3</code>. Existing progress is preserved by title.</p><input type="file" id="file" accept=".csv,text/csv,.json,application/json"><div class="actions"><button id="template" class="secondary">Download CSV template</button><button id="export" class="secondary">Export full backup</button><button id="reset" class="ghost">Reset tracking</button></div><p>Catalog references: <a target="_blank" rel="noopener" href="https://www.playstation.com/en-us/ps-plus/games/">PlayStation US</a> · <a target="_blank" rel="noopener" href="https://gamescriptions.com/subscription/service/ps_extra">Extra tracker</a> · <a target="_blank" rel="noopener" href="https://gamescriptions.com/subscription/service/ps_premium">Premium tracker</a>. Trophy guides: <a target="_blank" rel="noopener" href="https://psnprofiles.com/">PSNProfiles</a>.</p><h2>Tracking</h2><div id="tracking" class="muted">No games tracked yet.</div></section></div><p class="footer">Saved in this browser's local storage. Back up before clearing browser data or switching devices. Not affiliated with Sony. Catalog snapshot compiled October 8, 2026.</p></main><script>
+const raw=`A Hat in Time|Extra|PS4
+A Little to the Left|Extra|PS5
+A Quiet Place: The Road Ahead|Extra|PS5
+A Space for the Unbound|Extra|PS4
+A-Train Exp.|Extra|PS4
+Abiotic Factor|Extra|PS5
+Adventure Time: Pirates of the Enchiridion|Extra|PS4
+Age of Wonders: Planetfall|Extra|PS4
+Alex Kidd in Miracle World DX|Extra|PS4/PS5
+Alienation|Extra|PS4
+Anno 1800|Extra|PS5
+Anno: Mutationem|Extra|PS4/PS5
+Anodyne|Extra|PS4
+Another Crab's Treasure|Extra|PS5
+AO Tennis 2|Extra|PS4
+Aragami|Extra|PS4
+Arcade Paradise|Extra|PS4/PS5
+Art of Rally|Extra|PS4/PS5
+As Dusk Falls|Extra|PS4/PS5
+Assassin's Creed Chronicles: China|Extra|PS4
+Assassin's Creed Chronicles: India|Extra|PS4
+Assassin's Creed Chronicles: Russia|Extra|PS4
+Assassin's Creed III Remastered|Extra|PS4
+Assassin's Creed IV Black Flag|Extra|PS4
+Assassin's Creed Mirage|Extra|PS4/PS5
+Assassin's Creed Odyssey|Extra|PS4
+Assassin's Creed Origins|Extra|PS4
+Assassin's Creed Syndicate|Extra|PS4
+Assassin's Creed Unity|Extra|PS4
+Assassin's Creed Valhalla|Extra|PS4/PS5
+Assassin's Creed: Freedom Cry|Extra|PS4
+Assassin's Creed: Rogue Remastered|Extra|PS4
+Assassin's Creed: The Ezio Collection|Extra|PS4
+Assetto Corsa Competizione|Extra|PS4/PS5
+Astroneer|Extra|PS4
+Atelier Ryza 3: Alchemist of the End & the Secret Key|Extra|PS4/PS5
+Atlas Fallen: Reign of Sand|Extra|PS5
+Avatar: Frontiers of Pandora|Extra|PS5
+Back 4 Blood|Extra|PS4/PS5
+Bad North|Extra|PS4
+Ball x Pit|Extra|PS5
+Bang-On Balls: Chronicles|Extra|PS4/PS5
+Banishers: Ghosts of New Eden|Extra|PS5
+Battle Chasers: Nightwar|Extra|PS4
+Bee Simulator|Extra|PS4
+Ben 10|Extra|PS4
+Ben 10: Power Trip|Extra|PS4
+Biped|Extra|PS4
+Black Desert|Extra|PS4
+Blades of Fire|Extra|PS5
+Blasphemous II|Extra|PS4/PS5
+Bloodborne|Extra|PS4
+Blue Prince|Extra|PS5
+Bluey: The Videogame|Extra|PS4/PS5
+Bound|Extra|PS4
+Bramble: The Mountain King|Extra|PS4/PS5
+Brawlout|Extra|PS4
+Broken Sword: Shadow of the Templars Reforged|Extra|PS4/PS5
+Bus Simulator 21|Extra|PS4/PS5
+Call of Cthulhu|Extra|PS4
+Call of the Sea|Extra|PS4/PS5
+Captain Tsubasa: Rise of New Champions|Extra|PS4
+Car Mechanic Simulator|Extra|PS4
+Cartoon Network: Battle Crashers|Extra|PS4
+Cat Quest|Extra|PS4
+Cat Quest II|Extra|PS4
+Cat Quest III|Extra|PS4/PS5
+Celeste|Extra|PS4
+Chernobylite|Extra|PS4/PS5
+Chess Ultra|Extra|PS4
+Child of Light|Extra|PS4
+Children of Morta|Extra|PS4
+Chivalry 2|Extra|PS4/PS5
+Cities: Skylines|Extra|PS4
+Citizen Sleeper|Extra|PS4/PS5
+Citizen Sleeper 2: Starward Vector|Extra|PS5
+Coffee Talk|Extra|PS4
+Coffee Talk: Episode 2 - Hibiscus & Butterfly|Extra|PS4/PS5
+Conan Exiles|Extra|PS4
+Concrete Genie|Extra|PS4
+Conscript|Extra|PS4/PS5
+Construction Simulator|Extra|PS4/PS5
+Contra: Rogue Corps|Extra|PS4
+Coral Island|Extra|PS5
+Cricket 24|Extra|PS4/PS5
+Crime Boss: Rockay City|Extra|PS5
+Crow Country|Extra|PS4/PS5
+Crusader Kings III|Extra|PS5
+Cyberpunk 2077|Extra|PS4/PS5
+Dandara|Extra|PS4
+Dark Rose Valkyrie|Extra|PS4
+Darkest Dungeon II|Extra|PS4/PS5
+Date Everything!|Extra|PS5
+Days Gone|Extra|PS4
+Dead by Daylight|Extra|PS4/PS5
+Dead Cells|Extra|PS4/PS5
+Dead or Alive 5 Last Round|Extra|PS4
+Deadcraft|Extra|PS4/PS5
+Death End Re;Quest|Extra|PS4
+Death Squared|Extra|PS4
+Death Stranding|Extra|PS4
+Death Stranding: Director's Cut|Extra|PS5
+Deceive Inc.|Extra|PS5
+Deliver Us the Moon|Extra|PS4/PS5
+Demon's Souls|Extra|PS5
+Desperados III|Extra|PS4
+Destiny 2|Extra|PS4/PS5
+Detroit: Become Human|Extra|PS4
+Deus Ex: Mankind Divided|Extra|PS4
+Disgaea 5: Alliance of Vengeance|Extra|PS4
+Dishonored 2|Extra|PS4
+Dishonored: Death of the Outsider|Extra|PS4
+Doom|Extra|PS4
+Doom Eternal|Extra|PS4/PS5
+Dragon Star Varnir|Extra|PS4
+Dreams|Extra|PS4
+Dredge|Extra|PS4/PS5
+Dungeons of Hinterberg|Extra|PS4/PS5
+Dying Light|Extra|PS4
+Dying Light 2: Stay Human|Extra|PS4/PS5
+Dynasty Warriors 8: Empires|Extra|PS4
+Dynasty Warriors 9|Extra|PS4
+Eagle Flight|Extra|PS4
+Earth Defense Force 4.1: The Shadow of New Despair|Extra|PS4
+Earth Defense Force 5|Extra|PS4
+Earth Defense Force: Iron Rain|Extra|PS4
+Earth Defense Force: World Brothers|Extra|PS4
+Echoes of the End|Extra|PS5
+Eiyuden Chronicle: Hundred Heroes|Extra|PS4/PS5
+Eldest Souls|Extra|PS4/PS5
+Elite: Dangerous|Extra|PS4
+Embr|Extra|PS4
+Empire of Sin|Extra|PS4
+Endless Dungeon|Extra|PS4/PS5
+Enotria: The Last Song|Extra|PS5
+Entwined|Extra|PS4
+Erica|Extra|PS4
+Everybody's Golf|Extra|PS4
+Expeditions: A MudRunner Game|Extra|PS4/PS5
+Fade to Silence|Extra|PS4
+Fallout 4|Extra|PS4/PS5
+Fallout 76|Extra|PS4
+Far Cry 3: Blood Dragon - Classic Edition|Extra|PS4
+Far Cry 3: Classic Edition|Extra|PS4
+Far Cry 4|Extra|PS4
+Far Cry 5|Extra|PS4
+Far Cry 6|Extra|PS4/PS5
+Far Cry New Dawn|Extra|PS4
+Metro 2033 Redux|Premium|PS4
+Metro: Last Light Redux|Premium|PS4
+Ape Escape|Premium|PS4/PS5
+Ape Escape: On the Loose|Premium|PS4/PS5
+Arc the Lad: Twilight of the Spirits|Premium|PS4
+Armored Core|Premium|PS4/PS5
+Armored Core: Master of Arena|Premium|PS4/PS5
+Armored Core: Project Phantasma|Premium|PS4/PS5
+Blade Dancer: Lineage of Light|Premium|PS4/PS5
+Blood Omen: Legacy of Kain|Premium|PS4/PS5
+Blood Omen 2: Legacy of Kain|Premium|PS4/PS5
+Bolt|Premium|PS4/PS5
+Brave|Premium|PS4/PS5
+Buzz Lightyear of Star Command|Premium|PS4/PS5
+Cars Mater-National Championship|Premium|PS4/PS5
+Cars Race-O-Rama|Premium|PS4/PS5
+Ape Escape 2|Premium|PS4
+Batman: Arkham Origins|Premium|PS3
+Asura's Wrath|Premium|PS3
+Alone in the Dark: Inferno|Premium|PS3
+Castlevania: Lords of Shadow|Premium|PS3
+Castlevania: Lords of Shadow 2|Premium|PS3
+Mega Man X: Command Mission|Premium|PS4/PS5
+Disney's Atlantis: The Lost Empire|Premium|PS4/PS5
+Onimusha: Dawn of Dreams|Premium|PS4/PS5`;
+const defaults=raw.split('\n').map(line=>{let [title,tier,platform]=line.split('|');return {title,tier,platform,difficulty:null,hours:null,online:'unknown',platinum:'unknown',obtainable:'unknown'}});
+const key='platinum-roulette-v2';let saved;try{saved=JSON.parse(localStorage.getItem(key))||{}}catch(e){saved={}}let games=Array.isArray(saved.games)?saved.games:defaults,states=saved.states||{},chosen=null;
+const $=id=>document.getElementById(id);function persist(){try{localStorage.setItem(key,JSON.stringify({games,states}))}catch(e){console.warn('Storage unavailable',e)}}function norm(x){return String(x||'').trim().toLowerCase()}function valid(g){return g.platinum==='yes'&&g.obtainable==='yes'&&g.online==='no'}function filtered(){return games.filter(g=>{if($('tier').value!=='all'&&g.tier!==$('tier').value)return false;if($('search').value&&!norm(g.title).includes(norm($('search').value)))return false;if($('ps5').checked&&g.platform==='PS3')return false;if($('verified').checked&&(g.platinum!=='yes'||g.obtainable!=='yes'))return false;if($('online').checked&&g.online!=='no')return false;if($('excludeDone').checked&&states[norm(g.title)])return false;let d=+$('difficulty').value,h=+$('hours').value;if(d&&(!Number.isFinite(+g.difficulty)||g.difficulty===null||+g.difficulty>d))return false;if(h&&(!Number.isFinite(+g.hours)||g.hours===null||+g.hours>h))return false;return true})}function node(tag,cls,text){let e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}function setState(title,s){states[norm(title)]=s;persist();render()}function render(){let pool=filtered();$('total').textContent=games.length;$('eligible').textContent=games.filter(g=>valid(g)&&g.platform!=='PS3').length;$('done').textContent=Object.values(states).filter(s=>s==='completed').length;$('pool').textContent=pool.length;$('count').textContent='('+pool.length+' shown)';let list=$('list');list.replaceChildren();pool.slice(0,250).forEach(g=>{let item=node('div','item'),info=node('div'),name=node('b','',g.title),meta=node('small','',`${g.tier} · ${g.platform} · ${g.difficulty??'?'} /10 · ${g.hours??'?'} hrs · online: ${g.online} · platinum: ${g.platinum}`),btns=node('div','buttons');info.append(name,meta);[['🏆','completed'],['▶','in progress'],['⏭','skipped'],['↩','']].forEach(([label,s])=>{let b=node('button','secondary',label);b.title=s||'Clear status';b.onclick=()=>setState(g.title,s);btns.append(b)});item.append(info,btns);list.append(item)});if(!pool.length)list.append(node('p','muted','No matching games. Unknown trophy requirements are excluded by default. Import verified trophy data or turn off the verification filters to browse unverified titles.'));if(pool.length>250)list.append(node('p','muted',`Showing first 250 of ${pool.length}. Use search to narrow results.`));let tracked=Object.entries(states).filter(([k,v])=>v);$('tracking').textContent=tracked.length?tracked.map(([k,v])=>`${games.find(g=>norm(g.title)===k)?.title||k}: ${v}`).join(' • '):'No games tracked yet.'}
+function draw(){let pool=filtered();if(!pool.length){$('chosen').textContent='No eligible games';$('chosenmeta').textContent='Import verified trophy metadata, or relax filters to explore unverified games.';return}chosen=pool[Math.floor(Math.random()*pool.length)];$('chosen').textContent=chosen.title;$('drawlabel').textContent='YOUR RANDOM DRAW';$('chosenmeta').textContent=`${chosen.tier} · ${chosen.platform} · Difficulty ${chosen.difficulty??'unknown'}/10 · ${chosen.hours??'unknown'} hours · Online trophies: ${chosen.online} · Platinum: ${chosen.platinum}`;['complete','progress','skip'].forEach(id=>$(id).disabled=false)}$('draw').onclick=draw;$('reroll').onclick=draw;$('explore').onclick=()=>{let pool=games.filter(g=>g.platform!=='PS3'&&!states[norm(g.title)]&&g.online!=='yes'&&g.platinum!=='no');if(!pool.length){$('chosen').textContent='No preview games available';return}chosen=pool[Math.floor(Math.random()*pool.length)];$('chosen').textContent=chosen.title;$('drawlabel').textContent='UNVERIFIED PREVIEW DRAW';$('chosenmeta').textContent='Trophy availability and online requirements NOT VERIFIED. Check trophy guides before starting. '+chosen.tier+' · '+chosen.platform;['complete','progress','skip'].forEach(id=>$(id).disabled=false)};$('complete').onclick=()=>{if(chosen)setState(chosen.title,'completed')};$('progress').onclick=()=>{if(chosen)setState(chosen.title,'in progress')};$('skip').onclick=()=>{if(chosen)setState(chosen.title,'skipped')};['search','tier','difficulty','hours','online','verified','excludeDone','ps5'].forEach(id=>$(id).addEventListener('input',render));
+function download(name,contents,type){let a=document.createElement('a'),url=URL.createObjectURL(new Blob([contents],{type}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),500)}function csvCell(s){return '"'+String(s??'').replaceAll('"','""')+'"'}$('template').onclick=()=>download('psplus_platinum_catalog.csv',['title,tier,platform,difficulty,hours,online,platinum,obtainable',...games.map(g=>[g.title,g.tier,g.platform,g.difficulty,g.hours,g.online,g.platinum,g.obtainable].map(csvCell).join(','))].join('\n'),'text/csv');$('export').onclick=()=>download('platinum_roulette_backup.json',JSON.stringify({games,states,exported:new Date().toISOString()},null,2),'application/json');$('reset').onclick=()=>{if(confirm('Erase all completed, skipped, and in-progress tracking?')){states={};persist();render()}};
+function parseCSV(s){let rows=[],row=[],field='',quote=false;for(let i=0;i<s.length;i++){let c=s[i];if(c==='"'){if(quote&&s[i+1]==='"'){field+='"';i++}else quote=!quote}else if(c===','&&!quote){row.push(field);field=''}else if((c==='\n'||c==='\r')&&!quote){if(c==='\r'&&s[i+1]==='\n')i++;row.push(field);if(row.some(x=>x.trim()))rows.push(row);row=[];field=''}else field+=c}row.push(field);if(row.some(x=>x.trim()))rows.push(row);let headers=rows.shift().map(norm);if(!headers.includes('title'))throw Error('CSV must have title column');return rows.map(r=>Object.fromEntries(headers.map((h,i)=>[h,r[i]??''])))}
+$('file').onchange=async e=>{let file=e.target.files[0];if(!file)return;try{let data=file.name.toLowerCase().endsWith('.json')?JSON.parse(await file.text()):parseCSV(await file.text());if(!Array.isArray(data)&&Array.isArray(data.games)){if(data.states&&confirm('Restore tracking from this backup too?'))states=data.states;data=data.games}if(!Array.isArray(data))throw Error('Expected array of games');let imported=data.filter(x=>x.title).map(x=>({title:String(x.title).trim(),tier:norm(x.tier)==='premium'?'Premium':'Extra',platform:String(x.platform||'PS4/PS5').trim(),difficulty:x.difficulty===''||x.difficulty==null?null:Number(x.difficulty),hours:x.hours===''||x.hours==null?null:Number(x.hours),online:['yes','no'].includes(norm(x.online))?norm(x.online):'unknown',platinum:['yes','no'].includes(norm(x.platinum))?norm(x.platinum):'unknown',obtainable:['yes','no'].includes(norm(x.obtainable))?norm(x.obtainable):'unknown'}));let map=new Map(games.map(g=>[norm(g.title),g]));imported.forEach(g=>map.set(norm(g.title),g));games=[...map.values()];persist();render();alert(`Imported ${imported.length} rows. ${games.length} total titles. Existing progress preserved.`)}catch(err){alert('Import failed: '+err.message)}e.target.value=''};render();
+</script></body></html>
